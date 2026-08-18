@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Zap, Brain, CalendarCheck, BellRing, BarChart3, ArrowRight } from 'lucide-react';
+import { Zap, Brain, CalendarCheck, BellRing, ChartBar as BarChart3, ArrowRight } from 'lucide-react';
 import { Seo } from '@/components/shared/Seo';
 import { SectionHeading } from '@/components/shared/SectionHeading';
 
@@ -49,7 +49,7 @@ export function HowItWorksPage() {
         description="The FORVA PropTech workflow: Capture leads from every channel, qualify with AI, book appointments instantly, notify realtors in real time, and grow with analytics."
       />
 
-      <section className="border-b border-white/8 bg-navy-radial py-16 sm:py-20">
+      <section className="border-b border-white/8 bg-navy-900 bg-navy-radial py-16 sm:py-20">
         <div className="container-page text-center">
           <SectionHeading
             center
@@ -60,7 +60,7 @@ export function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20">
+      <section className="bg-navy-900 py-16 sm:py-20">
         <div className="container-page space-y-12">
           {steps.map((s, i) => (
             <div
@@ -95,7 +95,7 @@ export function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="border-t border-white/8 py-16 text-center">
+      <section className="border-t border-white/8 bg-navy-900 py-16 text-center">
         <div className="container-page">
           <h2 className="text-2xl font-bold text-white">Ready to get started?</h2>
           <p className="mt-3 text-silver-400">Start your 7-day free trial and see the full workflow live.</p>

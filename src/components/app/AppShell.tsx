@@ -1,11 +1,8 @@
 import { useState, type ReactNode } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import {
-  LayoutDashboard, Users, CalendarDays, MessageSquare, BarChart3, UserCircle2,
-  Bell, Settings as SettingsIcon, LogOut, Menu, X, Search, Plus, Shield,
-  Sparkles, Zap, ChevronDown
-} from 'lucide-react';
+import { LayoutDashboard, Users, CalendarDays, MessageSquare, ChartBar as BarChart3, CircleUser as UserCircle2, Bell, Settings as SettingsIcon, LogOut, Menu, X, Search, Plus, Shield, Sparkles, Zap, ChevronDown } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
+import { Logo } from '@/components/shared/Logo';
 
 const navItems = [
   { to: '/app/dashboard', label: 'Overview', icon: LayoutDashboard },
@@ -31,7 +28,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="fv-sidebar-inner">
       <div className="fv-sidebar-brand">
         <Link to="/app/dashboard" onClick={() => mobile && setMobileOpen(false)}>
-          <img src="/forva-logo-master.png" alt="FORVA PropTech" />
+          <Logo variant="full" theme="dark" />
         </Link>
         {mobile && <button className="fv-icon-btn" onClick={() => setMobileOpen(false)} aria-label="Close menu"><X size={19}/></button>}
       </div>

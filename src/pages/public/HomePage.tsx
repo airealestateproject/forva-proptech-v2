@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { ArrowRight, ChartBar as BarChart3, BellRing, Brain, CalendarCheck, CircleCheck as CheckCircle2, ChevronLeft, ChevronRight, Filter, Globe as Globe2, MessageSquareReply, Mic as Mic2, Plug, Users, Zap, Plus, Minus } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowRight, ChartBar as BarChart3, BellRing, Brain, CalendarCheck, CircleCheck as CheckCircle2, Filter, Globe as Globe2, MessageSquareReply, Mic as Mic2, Plug, Users, Zap, Plus, Minus, Building2, Mail, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Seo } from '@/components/shared/Seo';
 import { plans, trialDurationDays } from '@/data/plans';
@@ -130,17 +130,10 @@ const integrations = [
   { name: 'SMS', icon: MessageSquareReply },
 ];
 
-const testimonials = [
-  { name: 'Client story 01', role: 'Real estate professional', quote: 'Replace this preview with a verified customer quote about faster lead response and better follow-up.', result: 'Faster lead response' },
-  { name: 'Client story 02', role: 'Real estate team', quote: 'Replace this preview with a verified story about keeping more inbound leads engaged automatically.', result: 'More engaged leads' },
-  { name: 'Client story 03', role: 'Agency owner', quote: 'Replace this preview with a verified story about clearer buyer qualification and stronger agent prioritization.', result: 'Clearer qualification' },
-  { name: 'Client story 04', role: 'Realtor', quote: 'Replace this preview with a verified story about reducing manual follow-up while keeping conversations moving.', result: 'Less manual follow-up' },
-  { name: 'Client story 05', role: 'Brokerage team', quote: 'Replace this preview with a verified story about booking more conversations directly from fresh inquiries.', result: 'More appointments' },
-  { name: 'Client story 06', role: 'Team lead', quote: 'Replace this preview with a verified story about seeing every lead, owner, stage, and next action in one place.', result: 'Better visibility' },
-  { name: 'Client story 07', role: 'Real estate agency', quote: 'Replace this preview with a verified story about bringing Facebook, Instagram, and website leads into one workflow.', result: 'Unified lead capture' },
-  { name: 'Client story 08', role: 'Realtor', quote: 'Replace this preview with a verified story about receiving useful alerts when high-intent prospects need attention.', result: 'Timely notifications' },
-  { name: 'Client story 09', role: 'Agency manager', quote: 'Replace this preview with a verified story about assigning leads faster and improving team accountability.', result: 'Stronger team workflow' },
-  { name: 'Client story 10', role: 'Broker', quote: 'Replace this preview with a verified story about using automation and buyer intelligence to support more consistent closing activity.', result: 'More consistent pipeline' },
+const useCases = [
+  { icon: Building2, title: 'Solo Realtors', desc: 'Capture every inquiry, respond instantly, and keep follow-up on track without a back office. FORVA handles the busywork so you can focus on showings and closings.' },
+  { icon: Users, title: 'Real Estate Teams', desc: 'Assign leads to the right agent, track pipeline stages, and keep everyone aligned. Shared visibility means no lead falls through the cracks.' },
+  { icon: Globe2, title: 'Multi-Channel Agencies', desc: 'Bring Facebook Lead Ads, Instagram, and website inquiries into one workflow. Unify capture, qualification, and nurture across every channel.' },
 ];
 
 const faqs = [
@@ -210,20 +203,7 @@ function FaqItem({ faq, isOpen, onToggle }: { faq: { q: string; a: string }; isO
 }
 
 export function HomePage() {
-  const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setTestimonialIndex((current) => (current + 1) % testimonials.length);
-    }, 7000);
-    return () => window.clearInterval(timer);
-  }, []);
-
-  const activeTestimonial = testimonials[testimonialIndex];
-
-  const nextTestimonial = () => setTestimonialIndex((i) => (i + 1) % testimonials.length);
-  const previousTestimonial = () => setTestimonialIndex((i) => (i - 1 + testimonials.length) % testimonials.length);
 
   return (
     <div className="fp-site">
@@ -346,46 +326,25 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="fp-testimonial-section">
+      {/* Use Cases */}
+      <section className="fp-usecase-section">
         <div className="fp-shell">
-          <div className="fp-testimonial-heading">
-            <div>
-              <span className="fp-kicker">Customer stories</span>
-              <h2>Results become the story.</h2>
-            </div>
-            <p>Carousel structure is ready for 10 verified FORVA customer stories. The current entries are clearly marked preview content and should be replaced before production.</p>
+          <div className="fp-usecase-heading">
+            <span className="fp-kicker">Built for modern real estate teams</span>
+            <h2>One platform for every kind of real estate operation.</h2>
+            <p>Whether you work alone or run a multi-agent agency, FORVA adapts to how you capture, qualify, and close.</p>
           </div>
-
-          <div className="fp-testimonial-card">
-            <div className="fp-testimonial-result">{activeTestimonial.result}</div>
-            <blockquote>“{activeTestimonial.quote}”</blockquote>
-            <div className="fp-testimonial-person">
-              <div className="fp-avatar" aria-hidden="true">{String(testimonialIndex + 1).padStart(2, '0')}</div>
-              <div>
-                <strong>{activeTestimonial.name}</strong>
-                <span>{activeTestimonial.role} · Preview placeholder</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="fp-carousel-controls">
-            <div className="fp-dots" aria-label="Choose testimonial">
-              {testimonials.map((item, index) => (
-                <button
-                  type="button"
-                  key={item.name}
-                  className={index === testimonialIndex ? 'active' : ''}
-                  aria-label={`Show testimonial ${index + 1}`}
-                  aria-current={index === testimonialIndex ? 'true' : undefined}
-                  onClick={() => setTestimonialIndex(index)}
-                />
-              ))}
-            </div>
-            <div className="fp-arrow-buttons">
-              <button type="button" onClick={previousTestimonial} aria-label="Previous testimonial"><ChevronLeft size={22} /></button>
-              <button type="button" onClick={nextTestimonial} aria-label="Next testimonial"><ChevronRight size={22} /></button>
-            </div>
+          <div className="fp-usecase-grid">
+            {useCases.map((uc) => {
+              const Icon = uc.icon;
+              return (
+                <div className="fp-usecase-card" key={uc.title}>
+                  <div className="fp-usecase-icon"><Icon size={24} /></div>
+                  <h3>{uc.title}</h3>
+                  <p>{uc.desc}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

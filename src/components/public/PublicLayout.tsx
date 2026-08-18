@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import { Logo } from '@/components/shared/Logo';
 
 const navItems = [
   { to: '/features', label: 'Features' },
@@ -49,7 +50,7 @@ export function PublicLayout() {
       <header className="fp-header">
         <div className="fp-shell fp-header-inner">
           <Link to="/" className="fp-brand" aria-label="FORVA PropTech home">
-            <img src="/forva-logo-master.png" alt="FORVA PropTech" />
+            <Logo variant="full" theme="light" />
           </Link>
 
           <nav className="fp-nav" aria-label="Main navigation">
@@ -88,7 +89,7 @@ export function PublicLayout() {
         <div className="fp-shell">
           <div className="fp-footer-grid">
             <div className="fp-footer-brand">
-              <img src="/forva-logo-master.png" alt="FORVA PropTech" />
+              <Logo variant="full" theme="light" />
               <p>AI-powered real estate lead automation built to help teams capture, qualify, engage, book, and manage opportunities in one connected workflow.</p>
               <Link to="/get-started" className="fp-footer-cta">Start 7-day free trial <ArrowRight size={15} /></Link>
             </div>
@@ -101,7 +102,7 @@ export function PublicLayout() {
             ))}
 
             <div className="fp-footer-trust">
-              <div className="fp-trust-icon"><img src="/forva-app-icon-master.png" alt="FORVA app icon" /></div>
+              <div className="fp-trust-icon"><Logo variant="mark" theme="light" /></div>
               <h3>Built for modern real estate teams</h3>
               <p>Web + installable app experience with a connected lead workflow.</p>
               <div className="fp-trust-tags"><span>AI workflow</span><span>Lead intelligence</span><span>Team-ready</span></div>

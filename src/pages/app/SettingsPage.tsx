@@ -83,9 +83,9 @@ const integrations: Integration[] = [
 ];
 
 const statusConfig = {
-  not_connected: { label: 'Not Connected', classes: 'bg-white/5 text-silver-400 border border-white/10' },
-  setup_required: { label: 'Setup Required', classes: 'bg-amber-500/15 text-amber-300 border border-amber-500/30' },
-  coming_soon: { label: 'Coming Soon', classes: 'bg-silver-500/15 text-silver-400 border border-silver-500/30' },
+  not_connected: { label: 'Not Connected', classes: 'bg-slate-100 text-slate-600 border border-slate-300' },
+  setup_required: { label: 'Setup Required', classes: 'bg-amber-100 text-amber-700 border border-amber-300' },
+  coming_soon: { label: 'Coming Soon', classes: 'bg-slate-100 text-slate-500 border border-slate-300' },
 };
 
 export function SettingsPage() {
@@ -112,8 +112,8 @@ export function SettingsPage() {
                 onClick={() => setSection(s.key)}
                 className={`flex flex-shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                   section === s.key
-                    ? 'bg-accent-500/15 text-accent-300'
-                    : 'text-silver-400 hover:text-white hover:bg-white/5'
+                    ? 'bg-accent-500/15 text-blue-600'
+                    : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >
                 <s.icon size={16} />
@@ -140,7 +140,7 @@ export function SettingsPage() {
 
       {modal && (
         <Modal title={modal.title} onClose={() => setModal(null)}>
-          <p className="text-sm leading-relaxed text-silver-300">{modal.body}</p>
+          <p className="text-sm leading-relaxed text-slate-600">{modal.body}</p>
           <div className="mt-5 flex justify-end gap-2">
             <button type="button" onClick={() => setModal(null)} className="btn-secondary">
               Close
@@ -288,13 +288,13 @@ function ProfileSection() {
 
   return (
     <form onSubmit={handleSave} className="space-y-4">
-      <h2 className="text-sm font-semibold text-white">Profile</h2>
+      <h2 className="text-sm font-semibold text-slate-900">Profile</h2>
       <div className="flex items-center gap-4">
         <div className="relative h-16 w-16 overflow-hidden rounded-2xl bg-accent-gradient">
           {avatarUrl ? (
             <img src={avatarUrl} alt={user?.name} className="h-full w-full object-cover" />
           ) : (
-            <div className="flex h-full w-full items-center justify-center text-lg font-bold text-white">
+            <div className="flex h-full w-full items-center justify-center text-lg font-bold text-slate-900">
               {initials}
             </div>
           )}
@@ -326,7 +326,7 @@ function ProfileSection() {
             )}
           </button>
           {!profile?.agentId && (
-            <p className="mt-1 text-xs text-silver-500">Photo upload requires an agent profile.</p>
+            <p className="mt-1 text-xs text-slate-400">Photo upload requires an agent profile.</p>
           )}
         </div>
       </div>
@@ -351,7 +351,7 @@ function ProfileSection() {
             readOnly
             aria-readonly
           />
-          <p className="mt-1 text-xs text-silver-500">
+          <p className="mt-1 text-xs text-slate-400">
             Email changes are managed through Security settings below.
           </p>
         </div>
@@ -423,17 +423,17 @@ function BusinessSection() {
 
   return (
     <form onSubmit={handleSave} className="space-y-4">
-      <h2 className="text-sm font-semibold text-white">Business</h2>
+      <h2 className="text-sm font-semibold text-slate-900">Business</h2>
       <div>
         <label className="label">Account type</label>
         <div className="flex gap-3">
-          <div className={`flex-1 rounded-lg border p-3 text-sm ${profile?.clientName ? 'border-accent-400 bg-accent-500/10' : 'border-white/10'}`}>
-            <p className="font-medium text-white">Agency / Team</p>
-            <p className="text-xs text-silver-500">Multiple agents</p>
+          <div className={`flex-1 rounded-lg border p-3 text-sm ${profile?.clientName ? 'border-blue-400 bg-blue-50' : 'border-slate-200'}`}>
+            <p className="font-medium text-slate-900">Agency / Team</p>
+            <p className="text-xs text-slate-400">Multiple agents</p>
           </div>
-          <div className={`flex-1 rounded-lg border p-3 text-sm ${!profile?.clientName ? 'border-accent-400 bg-accent-500/10' : 'border-white/10'}`}>
-            <p className="font-medium text-white">Individual Agent</p>
-            <p className="text-xs text-silver-500">Solo realtor</p>
+          <div className={`flex-1 rounded-lg border p-3 text-sm ${!profile?.clientName ? 'border-blue-400 bg-blue-50' : 'border-slate-200'}`}>
+            <p className="font-medium text-slate-900">Individual Agent</p>
+            <p className="text-xs text-slate-400">Solo realtor</p>
           </div>
         </div>
       </div>
@@ -449,7 +449,7 @@ function BusinessSection() {
             placeholder="Not available yet"
           />
           {!canEditBusiness && (
-            <p className="mt-1 text-xs text-silver-500">Only agency owners and admins can edit business details.</p>
+            <p className="mt-1 text-xs text-slate-400">Only agency owners and admins can edit business details.</p>
           )}
         </div>
         <div>
@@ -489,7 +489,7 @@ function BusinessSection() {
       {canEditBusiness ? (
         <FormActions saving={saving} message={message} />
       ) : (
-        <p className="text-xs text-silver-500">
+        <p className="text-xs text-slate-400">
           Business settings are read-only for your role. Contact your agency owner to make changes.
         </p>
       )}
@@ -505,23 +505,23 @@ function TeamSection() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-semibold text-white">Team Members</h2>
+        <h2 className="text-sm font-semibold text-slate-900">Team Members</h2>
         <button type="button" className="btn-primary text-xs" onClick={() => setShowInvite(true)}>
           <UserPlus size={14} />
           Invite Member
         </button>
       </div>
-      <p className="text-sm text-silver-400">
+      <p className="text-sm text-slate-500">
         Manage your agency team members and their roles. Full team management is available on the Team page.
       </p>
-      <div className="rounded-lg border border-dashed border-white/10 p-6 text-center text-sm text-silver-500">
+      <div className="rounded-lg border border-dashed border-slate-300 p-6 text-center text-sm text-slate-400">
         Team member invitations will appear here once configured.
       </div>
 
       {showInvite && (
         <Modal title="Invite Team Member" onClose={() => setShowInvite(false)}>
           <div className="space-y-4">
-            <p className="text-sm text-silver-300">
+            <p className="text-sm text-slate-600">
               Enter the email address of the person you'd like to invite to your agency. They will receive an invitation to join your FORVA PropTech workspace.
             </p>
             <div>
@@ -529,7 +529,7 @@ function TeamSection() {
               <input id="inviteEmail" type="email" className="input" placeholder="colleague@example.com" />
             </div>
             <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
-              <p className="text-xs text-amber-300">
+              <p className="text-xs text-amber-700">
                 Invitation delivery is not yet configured. No email will be sent until the invitation system is activated. Please contact support to enable team invitations.
               </p>
             </div>
@@ -603,18 +603,18 @@ function NotificationsSection() {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-sm font-semibold text-white">Notification Preferences</h2>
+      <h2 className="text-sm font-semibold text-slate-900">Notification Preferences</h2>
       <div className="space-y-3">
         {preferences.map((p) => {
           const on = p.key === 'in_app' ? inAppEnabled : p.key === 'email' ? emailEnabled : smsEnabled;
           return (
             <label
               key={p.key}
-              className="flex items-center justify-between rounded-lg border border-white/8 bg-navy-900/40 p-3 cursor-pointer"
+              className="flex items-center justify-between rounded-lg border border-slate-200 bg-white p-3 cursor-pointer"
             >
               <div>
-                <p className="text-sm font-medium text-white">{p.label}</p>
-                <p className="text-xs text-silver-500">{p.desc}</p>
+                <p className="text-sm font-medium text-slate-900">{p.label}</p>
+                <p className="text-xs text-slate-400">{p.desc}</p>
               </div>
               <Toggle
                 on={on}
@@ -626,12 +626,12 @@ function NotificationsSection() {
         })}
       </div>
       {message && (
-        <p className={`text-sm ${message.type === 'success' ? 'text-emerald-300' : 'text-red-300'}`}>
+        <p className={`text-sm ${message.type === 'success' ? 'text-emerald-600' : 'text-red-600'}`}>
           {message.text}
         </p>
       )}
       {!profile?.agentId && (
-        <p className="text-xs text-silver-500">
+        <p className="text-xs text-slate-400">
           Notification preferences require an agent profile. Contact your administrator.
         </p>
       )}
@@ -644,21 +644,21 @@ function NotificationsSection() {
 function IntegrationsSection({ onOpenModal }: { onOpenModal: (m: { title: string; body: string }) => void }) {
   return (
     <div className="space-y-4">
-      <h2 className="text-sm font-semibold text-white">Integrations</h2>
-      <p className="text-sm text-silver-400">Connect FORVA PropTech to your lead sources and tools.</p>
+      <h2 className="text-sm font-semibold text-slate-900">Integrations</h2>
+      <p className="text-sm text-slate-500">Connect FORVA PropTech to your lead sources and tools.</p>
       <div className="grid gap-3 sm:grid-cols-2">
         {integrations.map((int) => {
           const s = statusConfig[int.status];
           return (
-            <div key={int.name} className="rounded-lg border border-white/8 bg-navy-900/40 p-4">
+            <div key={int.name} className="rounded-lg border border-slate-200 bg-white p-4">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-500/15 text-accent-300">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-500/15 text-blue-600">
                     <int.icon size={18} />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-white">{int.name}</p>
-                    <p className="text-xs text-silver-500">{int.desc}</p>
+                    <p className="text-sm font-medium text-slate-900">{int.name}</p>
+                    <p className="text-xs text-slate-400">{int.desc}</p>
                   </div>
                 </div>
               </div>
@@ -772,32 +772,32 @@ function BillingSection() {
 
   return (
     <div className="space-y-5">
-      <h2 className="text-sm font-semibold text-white">Billing & Subscription</h2>
+      <h2 className="text-sm font-semibold text-slate-900">Billing & Subscription</h2>
 
-      <div className="rounded-lg border border-white/8 bg-navy-900/40 p-4">
+      <div className="rounded-lg border border-slate-200 bg-white p-4">
         {loading ? (
-          <div className="flex items-center gap-2 py-2 text-silver-400">
-            <Loader2 size={16} className="animate-spin text-accent-300" />
+          <div className="flex items-center gap-2 py-2 text-slate-500">
+            <Loader2 size={16} className="animate-spin text-blue-600" />
             <span className="text-sm">Loading subscription...</span>
           </div>
         ) : (
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <p className="text-xs text-silver-500">Current Plan</p>
-              <p className="text-lg font-bold text-white capitalize">{currentPlan}</p>
+              <p className="text-xs text-slate-400">Current Plan</p>
+              <p className="text-lg font-bold text-slate-900 capitalize">{currentPlan}</p>
               {currentPlan === 'trial' && (
-                <p className="text-sm text-silver-400">{trialDurationDays}-day free trial</p>
+                <p className="text-sm text-slate-500">{trialDurationDays}-day free trial</p>
               )}
             </div>
             <div className="flex flex-col items-end gap-2">
-              <span className={`badge capitalize ${currentStatus === 'trialing' ? subscriptionStatusConfig.trial.classes : 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30'}`}>
+              <span className={`badge capitalize ${currentStatus === 'trialing' ? subscriptionStatusConfig.trial.classes : 'bg-emerald-500/15 text-emerald-600 border border-emerald-500/30'}`}>
                 {currentStatus}
               </span>
             </div>
           </div>
         )}
-        <div className="mt-4 rounded-lg border border-accent-500/20 bg-accent-500/5 p-3">
-          <p className="text-sm text-accent-300">
+        <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 p-3">
+          <p className="text-sm text-blue-600">
             {trialDurationDays}-day free trial. No payment method required yet.
           </p>
         </div>
@@ -805,13 +805,13 @@ function BillingSection() {
 
       {billingError && (
         <div className="flex items-center gap-2 rounded-lg border border-red-500/20 bg-red-500/5 p-3">
-          <AlertCircle size={16} className="flex-shrink-0 text-red-300" />
-          <p className="text-sm text-red-300">{billingError}</p>
+          <AlertCircle size={16} className="flex-shrink-0 text-red-600" />
+          <p className="text-sm text-red-600">{billingError}</p>
         </div>
       )}
 
       <div>
-        <h3 className="text-sm font-semibold text-white">Available Plans</h3>
+        <h3 className="text-sm font-semibold text-slate-900">Available Plans</h3>
         <div className="mt-3 grid gap-3 sm:grid-cols-3">
           {plans.map((plan) => {
             const planKey = plan.id as PlanKey;
@@ -819,11 +819,11 @@ function BillingSection() {
             return (
               <div
                 key={plan.id}
-                className="rounded-lg border border-white/10 p-4"
+                className="rounded-lg border border-slate-200 bg-white p-4"
               >
-                <p className="text-sm font-semibold text-white">{plan.name}</p>
-                <p className="text-lg font-bold text-white">${plan.monthlyPrice}<span className="text-xs text-silver-500">/mo</span></p>
-                <p className="mt-1 text-xs text-silver-400">Up to {plan.entitlements.maxUsers} users</p>
+                <p className="text-sm font-semibold text-slate-900">{plan.name}</p>
+                <p className="text-lg font-bold text-slate-900">${plan.monthlyPrice}<span className="text-xs text-slate-400">/mo</span></p>
+                <p className="mt-1 text-xs text-slate-500">Up to {plan.entitlements.maxUsers} users</p>
                 <button
                   type="button"
                   className="btn-outline mt-3 w-full text-xs"
@@ -845,7 +845,7 @@ function BillingSection() {
         </div>
       </div>
 
-      <p className="text-xs text-silver-500">
+      <p className="text-xs text-slate-400">
         Subscriptions are securely processed through PayPal.
       </p>
     </div>
@@ -897,29 +897,29 @@ function UsageSection() {
 
   return (
     <div className="space-y-5">
-      <h2 className="text-sm font-semibold text-white">Usage</h2>
-      <p className="text-sm text-silver-400">Track your account activity and usage.</p>
+      <h2 className="text-sm font-semibold text-slate-900">Usage</h2>
+      <p className="text-sm text-slate-500">Track your account activity and usage.</p>
       {loading ? (
-        <div className="flex items-center justify-center gap-3 py-8 text-silver-400">
-          <Loader2 size={20} className="animate-spin text-accent-300" />
+        <div className="flex items-center justify-center gap-3 py-8 text-slate-500">
+          <Loader2 size={20} className="animate-spin text-blue-600" />
           <span className="text-sm">Loading usage data...</span>
         </div>
       ) : (
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => (
-            <div key={item.label} className="rounded-lg border border-white/8 bg-navy-900/40 p-4">
+            <div key={item.label} className="rounded-lg border border-slate-200 bg-white p-4">
               <div className="flex items-center gap-2">
-                <item.icon size={16} className="text-accent-300" />
-                <p className="text-xs text-silver-500">{item.label}</p>
+                <item.icon size={16} className="text-blue-600" />
+                <p className="text-xs text-slate-400">{item.label}</p>
               </div>
-              <p className="mt-2 text-2xl font-bold text-white">
+              <p className="mt-2 text-2xl font-bold text-slate-900">
                 {typeof item.value === 'number' ? item.value.toLocaleString() : item.value}
               </p>
             </div>
           ))}
         </div>
       )}
-      <div className="rounded-lg border border-dashed border-white/10 p-4 text-center text-sm text-silver-500">
+      <div className="rounded-lg border border-dashed border-slate-300 p-4 text-center text-sm text-slate-400">
         Detailed provider usage (AI, email, SMS) will be shown once those integrations are activated.
       </div>
     </div>
@@ -932,27 +932,27 @@ function AIVoiceSection() {
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-semibold text-white">AI Voice Add-On</h2>
-        <span className="badge bg-silver-500/15 text-silver-400 border border-silver-500/30">
+        <h2 className="text-sm font-semibold text-slate-900">AI Voice Add-On</h2>
+        <span className="badge bg-silver-500/15 text-slate-500 border border-silver-500/30">
           Not Activated
         </span>
       </div>
 
-      <div className="rounded-lg border border-white/8 bg-navy-900/40 p-4">
+      <div className="rounded-lg border border-slate-200 bg-white p-4">
         <div className="flex items-start gap-3">
-          <PhoneCall size={20} className="mt-0.5 flex-shrink-0 text-accent-300" />
+          <PhoneCall size={20} className="mt-0.5 flex-shrink-0 text-blue-600" />
           <div>
-            <p className="text-sm text-white">AI Voice is an optional paid add-on for any plan.</p>
-            <p className="mt-1 text-xs text-silver-400">
+            <p className="text-sm text-slate-900">AI Voice is an optional paid add-on for any plan.</p>
+            <p className="mt-1 text-xs text-slate-500">
               It enables AI-powered calls to leads for qualification, follow-up, and appointment scheduling.
             </p>
           </div>
         </div>
       </div>
 
-      <div className="rounded-lg border border-accent-500/20 bg-accent-500/5 p-4 text-center">
-        <p className="text-sm text-accent-300">Contact Support to Activate</p>
-        <p className="mt-1 text-xs text-silver-400">Self-service activation is coming soon.</p>
+      <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 text-center">
+        <p className="text-sm text-blue-600">Contact Support to Activate</p>
+        <p className="mt-1 text-xs text-slate-500">Self-service activation is coming soon.</p>
         <Link
           to="/contact"
           className="btn-outline mt-4 inline-flex text-xs"
@@ -1027,29 +1027,29 @@ function SecuritySection() {
 
   return (
     <div className="space-y-5">
-      <h2 className="text-sm font-semibold text-white">Security</h2>
+      <h2 className="text-sm font-semibold text-slate-900">Security</h2>
 
-      <div className="rounded-lg border border-white/8 bg-navy-900/40 p-4">
+      <div className="rounded-lg border border-slate-200 bg-white p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-white">Current Session</p>
-            <p className="text-xs text-silver-500">{user?.email}</p>
+            <p className="text-sm font-medium text-slate-900">Current Session</p>
+            <p className="text-xs text-slate-400">{user?.email}</p>
           </div>
-          <span className={`badge ${sessionActive ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30' : 'bg-silver-500/15 text-silver-400 border border-silver-500/30'}`}>
+          <span className={`badge ${sessionActive ? 'bg-emerald-500/15 text-emerald-600 border border-emerald-500/30' : 'bg-silver-500/15 text-slate-500 border border-silver-500/30'}`}>
             {sessionActive ? 'Active' : 'No active session'}
           </span>
         </div>
         <button
           type="button"
           onClick={() => logout()}
-          className="btn-ghost mt-3 text-xs text-red-300 hover:text-red-200"
+          className="btn-ghost mt-3 text-xs text-red-600 hover:text-red-200"
         >
           Sign out of all sessions
         </button>
       </div>
 
       <form onSubmit={handlePasswordChange} className="space-y-4">
-        <h3 className="text-sm font-semibold text-white">Change Password</h3>
+        <h3 className="text-sm font-semibold text-slate-900">Change Password</h3>
         <div>
           <label className="label" htmlFor="current">Current password</label>
           <div className="relative">
@@ -1065,7 +1065,7 @@ function SecuritySection() {
             <button
               type="button"
               onClick={() => setShowCurrent((v) => !v)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-silver-500 hover:text-silver-300"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
               aria-label={showCurrent ? 'Hide password' : 'Show password'}
             >
               {showCurrent ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -1088,7 +1088,7 @@ function SecuritySection() {
               <button
                 type="button"
                 onClick={() => setShowNew((v) => !v)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-silver-500 hover:text-silver-300"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                 aria-label={showNew ? 'Hide password' : 'Show password'}
               >
                 {showNew ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -1110,7 +1110,7 @@ function SecuritySection() {
               <button
                 type="button"
                 onClick={() => setShowConfirm((v) => !v)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-silver-500 hover:text-silver-300"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                 aria-label={showConfirm ? 'Hide password' : 'Show password'}
               >
                 {showConfirm ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -1121,11 +1121,11 @@ function SecuritySection() {
         <FormActions saving={saving} message={message} label="Update password" />
       </form>
 
-      <div className="border-t border-white/8 pt-4">
-        <h3 className="text-sm font-semibold text-red-300">Danger Zone</h3>
-        <p className="mt-1 text-xs text-silver-500">
+      <div className="border-t border-slate-200 pt-4">
+        <h3 className="text-sm font-semibold text-red-600">Danger Zone</h3>
+        <p className="mt-1 text-xs text-slate-400">
           Account deletion requests are handled via our{' '}
-          <Link to="/data-deletion" className="text-accent-300 hover:underline">
+          <Link to="/data-deletion" className="text-blue-600 hover:underline">
             Data Deletion page
           </Link>
           .
@@ -1159,7 +1159,7 @@ function FormActions({
         )}
       </button>
       {message && (
-        <div className={`flex items-center gap-1.5 text-sm ${message.type === 'success' ? 'text-emerald-300' : 'text-red-300'}`}>
+        <div className={`flex items-center gap-1.5 text-sm ${message.type === 'success' ? 'text-emerald-600' : 'text-red-600'}`}>
           {message.type === 'success' ? <Check size={14} /> : <AlertCircle size={14} />}
           {message.text}
         </div>
@@ -1176,7 +1176,7 @@ function Toggle({ on, disabled, onToggle }: { on: boolean; disabled?: boolean; o
       aria-checked={on}
       disabled={disabled}
       onClick={onToggle}
-      className={`relative h-6 w-11 flex-shrink-0 rounded-full transition-colors ${on ? 'bg-accent-500' : 'bg-white/10'} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+      className={`relative h-6 w-11 flex-shrink-0 rounded-full transition-colors ${on ? 'bg-accent-500' : 'bg-slate-200'} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
     >
       <span
         className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition-transform ${on ? 'translate-x-[22px]' : 'translate-x-0.5'}`}

@@ -1,12 +1,13 @@
-import { useState, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2, Sparkles, Zap, Users } from 'lucide-react';
+import { ArrowLeft, CircleCheck as CheckCircle2, Sparkles, Zap, Users } from 'lucide-react';
+import { Logo } from '@/components/shared/Logo';
 
 export function AuthLayout({ title, subtitle, children, footer }: { title: string; subtitle: string; children: ReactNode; footer?: ReactNode; }) {
   return (
     <div className="fv-auth-shell">
       <section className="fv-auth-brand-panel">
-        <Link to="/" className="fv-auth-logo"><img src="/forva-logo-master.png" alt="FORVA PropTech" /></Link>
+        <Link to="/" className="fv-auth-logo"><Logo variant="full" theme="dark" /></Link>
         <div className="fv-auth-story">
           <div className="fv-auth-eyebrow"><Sparkles size={15}/> AI-powered real estate lead engine</div>
           <h2>Turn every inquiry into your next opportunity.</h2>
@@ -20,9 +21,9 @@ export function AuthLayout({ title, subtitle, children, footer }: { title: strin
         <div className="fv-auth-proof"><span className="fv-live-dot"/> Lead engine ready when you sign in</div>
       </section>
       <section className="fv-auth-form-panel">
-        <div className="fv-auth-mobile-logo"><img src="/forva-logo-master.png" alt="FORVA PropTech" /></div>
+        <div className="fv-auth-mobile-logo"><Logo variant="full" theme="dark" /></div>
         <div className="fv-auth-card">
-          <div className="fv-auth-icon"><img src="/forva-app-icon-master.png" alt="" /></div>
+          <div className="fv-auth-icon"><Logo variant="mark" theme="dark" /></div>
           <h1>{title}</h1><p className="fv-auth-subtitle">{subtitle}</p>
           <div className="fv-auth-form-content">{children}</div>
           {footer && <div className="fv-auth-footer">{footer}</div>}
@@ -34,7 +35,5 @@ export function AuthLayout({ title, subtitle, children, footer }: { title: strin
 }
 
 export function AuthNote() {
-  const [show, setShow] = useState(true);
-  if (!import.meta.env.DEV || !show) return null;
-  return <div className="fv-demo-note"><div><strong>Development mode</strong><br/>Use your configured Supabase credentials to sign in.</div><button type="button" onClick={()=>setShow(false)}>×</button></div>;
+  return null;
 }
