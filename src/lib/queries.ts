@@ -455,7 +455,7 @@ export async function fetchLeadDetail(id: string): Promise<LeadDetailResult> {
   });
 
   const verification = verifyRes.data
-    ? (verifyRes.data as BuyerVerificationRow)
+    ? (verifyRes.data as unknown as BuyerVerificationRow)
     : null;
 
   const inquiries = ((inquiryRes.data || []) as LeadInquiryRow[]);

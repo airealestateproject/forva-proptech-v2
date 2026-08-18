@@ -1,31 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  User,
-  Building2,
-  Users,
-  Bell,
-  Plug,
-  Shield,
-  Mail,
-  Camera,
-  Facebook,
-  Instagram,
-  Globe,
-  Calendar,
-  MessageSquare,
-  Check,
-  CreditCard,
-  BarChart3,
-  PhoneCall,
-  Sparkles,
-  Eye,
-  EyeOff,
-  Loader2,
-  AlertCircle,
-  UserPlus,
-  Upload,
-} from 'lucide-react';
+import { User, Building2, Users, Bell, Plug, Shield, Mail, Camera, Facebook, Instagram, Globe, Calendar, MessageSquare, Check, CreditCard, ChartBar as BarChart3, PhoneCall, Sparkles, Eye, EyeOff, Loader as Loader2, CircleAlert as AlertCircle, UserPlus, Upload } from 'lucide-react';
 import { Seo } from '@/components/shared/Seo';
 import { PageHeader } from '@/components/shared/SectionHeading';
 import { Modal } from '@/components/shared/Modal';
@@ -265,18 +240,22 @@ function ProfileSection() {
       if (profile?.agentId) {
         if (fullName !== user.name) {
           updates.push(
-            supabase
-              .from('agents')
-              .update({ full_name: fullName })
-              .eq('id', profile.agentId),
+            Promise.resolve(
+              supabase
+                .from('agents')
+                .update({ full_name: fullName })
+                .eq('id', profile.agentId),
+            ),
           );
         }
         if (phone !== profile.phone) {
           updates.push(
-            supabase
-              .from('agents')
-              .update({ phone })
-              .eq('id', profile.agentId),
+            Promise.resolve(
+              supabase
+                .from('agents')
+                .update({ phone })
+                .eq('id', profile.agentId),
+            ),
           );
         }
       }

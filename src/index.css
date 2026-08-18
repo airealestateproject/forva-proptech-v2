@@ -174,6 +174,49 @@
 .fp-final-cta { padding:80px 0; background:#fff; }
 .fp-final-cta-card { display:flex; align-items:center; justify-content:space-between; gap:40px; border:1px solid #dfe7f1; border-radius:28px; background:#f7f9fc; padding:48px 54px; }.fp-final-cta-card h2{font-size:clamp(32px,3vw,48px);max-width:760px;margin-bottom:0}.fp-final-actions{display:flex;gap:12px;flex:0 0 auto}
 
+/* Journey */
+.fp-journey-section{padding:80px 0;background:#fff;border-top:1px solid #edf1f5}
+.fp-journey-track{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap}
+.fp-journey-step{display:flex;align-items:center;gap:10px;padding:14px 20px;border:1px solid #e0e6ed;border-radius:14px;background:#fff;box-shadow:0 6px 18px rgba(18,43,74,.06);margin:6px}
+.fp-journey-icon{width:36px;height:36px;border-radius:10px;background:#edf4ff;color:#1768e5;display:grid;place-items:center}
+.fp-journey-step span{font-size:13px;font-weight:700;color:#1c2738;white-space:nowrap}
+.fp-journey-arrow{color:#c0cad6;display:flex;align-items:center}
+
+/* Integrations */
+.fp-integrations-section{padding:90px 0;background:#f7f9fc;border-top:1px solid #edf1f5}
+.fp-integrations-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;max-width:1000px;margin:0 auto}
+.fp-integration-card{display:flex;flex-direction:column;align-items:center;gap:12px;padding:28px 16px;border:1px solid #dfe7f1;border-radius:18px;background:#fff;box-shadow:0 6px 18px rgba(18,43,74,.05);transition:.2s}
+.fp-integration-card:hover{border-color:#bfd4ee;transform:translateY(-2px);box-shadow:0 10px 28px rgba(18,43,74,.08)}
+.fp-integration-icon{width:52px;height:52px;border-radius:14px;background:#edf4ff;color:#1768e5;display:grid;place-items:center}
+.fp-integration-card span{font-size:13px;font-weight:700;color:#1c2738}
+
+/* Pricing preview */
+.fp-pricing-preview{padding:90px 0;background:#fff;border-top:1px solid #edf1f5}
+.fp-pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
+.fp-pricing-card{position:relative;border:1px solid #dfe7f1;border-radius:24px;background:#fff;padding:36px 32px;box-shadow:0 10px 30px rgba(18,43,74,.06);display:flex;flex-direction:column}
+.fp-pricing-featured{border-color:#1768e5;box-shadow:0 14px 40px rgba(23,104,229,.1)}
+.fp-pricing-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#0c2247;color:#fff;font-size:11px;font-weight:800;padding:5px 14px;border-radius:999px;white-space:nowrap}
+.fp-pricing-card h3{font-size:20px;font-weight:700;color:#0c2247;margin:0}
+.fp-pricing-price{margin:16px 0 8px;display:flex;align-items:baseline;gap:4px}
+.fp-pricing-amount{font-size:42px;font-weight:700;color:#091425;letter-spacing:-.03em}
+.fp-pricing-period{font-size:15px;color:#8993a3;font-weight:600}
+.fp-pricing-desc{font-size:14px;color:#667286;line-height:1.55;margin:0 0 20px}
+.fp-pricing-features{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:10px}
+.fp-pricing-features li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#3c4859}
+.fp-pricing-features svg{color:#1768e5;flex:0 0 auto;margin-top:2px}
+.fp-pricing-footer{text-align:center;margin-top:36px}
+
+/* FAQ */
+.fp-faq-section{padding:90px 0;background:#f7f9fc;border-top:1px solid #edf1f5}
+.fp-faq-list{max-width:780px;margin:0 auto;display:grid;gap:12px}
+.fp-faq-item{border:1px solid #dfe7f1;border-radius:16px;background:#fff;overflow:hidden}
+.fp-faq-question{width:100%;display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border:0;background:transparent;cursor:pointer;font-size:16px;font-weight:700;color:#0c2247;text-align:left}
+.fp-faq-question svg{color:#1768e5;flex:0 0 auto}
+.fp-faq-answer{padding:0 28px 22px;font-size:15px;line-height:1.65;color:#536070}
+
+@media(max-width:900px){.fp-journey-track{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:8px}.fp-integrations-grid{grid-template-columns:repeat(3,1fr)}.fp-pricing-grid{grid-template-columns:1fr;max-width:420px}}
+@media(max-width:600px){.fp-integrations-grid{grid-template-columns:repeat(2,1fr)}.fp-faq-question{padding:18px 20px;font-size:15px}.fp-faq-answer{padding:0 20px 18px}}
+
 .fp-footer { background:#f3f6fa; border-top:1px solid #e3e9f0; color:#172133; padding:70px 0 28px; }
 .fp-footer-grid { display:grid; grid-template-columns:1.5fr repeat(3,.7fr) 1.1fr; gap:44px; }
 .fp-footer-brand img { width:210px; height:auto; }.fp-footer-brand p { margin:24px 0 20px; color:#667286; line-height:1.65; max-width:400px; font-size:14px; }.fp-footer-cta { display:inline-flex; align-items:center; gap:7px; font-weight:800; color:#1768e5; font-size:14px; }

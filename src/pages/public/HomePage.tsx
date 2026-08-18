@@ -1,22 +1,8 @@
 import { useEffect, useState } from 'react';
-import {
-  ArrowRight,
-  BarChart3,
-  BellRing,
-  Brain,
-  CalendarCheck,
-  CheckCircle2,
-  ChevronLeft,
-  ChevronRight,
-  Filter,
-  Globe2,
-  MessageSquareReply,
-  Mic2,
-  Users,
-  Zap,
-} from 'lucide-react';
+import { ArrowRight, ChartBar as BarChart3, BellRing, Brain, CalendarCheck, CircleCheck as CheckCircle2, ChevronLeft, ChevronRight, Filter, Globe as Globe2, MessageSquareReply, Mic as Mic2, Plug, Users, Zap, Plus, Minus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Seo } from '@/components/shared/Seo';
+import { plans, trialDurationDays } from '@/data/plans';
 
 const features = [
   {
@@ -111,6 +97,17 @@ const features = [
   },
 ];
 
+const journeySteps = [
+  { label: 'Property Inquiry', icon: Globe2 },
+  { label: 'Lead Capture', icon: Filter },
+  { label: 'AI Qualification', icon: Brain },
+  { label: 'Instant Response', icon: Zap },
+  { label: 'Automated Follow-Up', icon: MessageSquareReply },
+  { label: 'Appointment', icon: CalendarCheck },
+  { label: 'Realtor Notification', icon: BellRing },
+  { label: 'Conversion', icon: CheckCircle2 },
+];
+
 const workflow = [
   { label: 'Lead captured', icon: Globe2 },
   { label: 'Instant response', icon: Zap },
@@ -124,6 +121,15 @@ const workflow = [
   { label: 'Closed', icon: CheckCircle2 },
 ];
 
+const integrations = [
+  { name: 'Facebook / Meta', icon: Globe2 },
+  { name: 'Instagram', icon: Globe2 },
+  { name: 'Website Forms', icon: Filter },
+  { name: 'Google Calendar', icon: CalendarCheck },
+  { name: 'Email', icon: MessageSquareReply },
+  { name: 'SMS', icon: MessageSquareReply },
+];
+
 const testimonials = [
   { name: 'Client story 01', role: 'Real estate professional', quote: 'Replace this preview with a verified customer quote about faster lead response and better follow-up.', result: 'Faster lead response' },
   { name: 'Client story 02', role: 'Real estate team', quote: 'Replace this preview with a verified story about keeping more inbound leads engaged automatically.', result: 'More engaged leads' },
@@ -135,6 +141,41 @@ const testimonials = [
   { name: 'Client story 08', role: 'Realtor', quote: 'Replace this preview with a verified story about receiving useful alerts when high-intent prospects need attention.', result: 'Timely notifications' },
   { name: 'Client story 09', role: 'Agency manager', quote: 'Replace this preview with a verified story about assigning leads faster and improving team accountability.', result: 'Stronger team workflow' },
   { name: 'Client story 10', role: 'Broker', quote: 'Replace this preview with a verified story about using automation and buyer intelligence to support more consistent closing activity.', result: 'More consistent pipeline' },
+];
+
+const faqs = [
+  {
+    q: 'What is FORVA PropTech?',
+    a: 'FORVA PropTech is an AI-powered real estate lead engine that captures, qualifies, follows up with, and converts property inquiries. It unifies Facebook Lead Ads, Instagram, website forms, and manual entry into one connected workflow.',
+  },
+  {
+    q: 'How does the 7-day free trial work?',
+    a: `Every plan includes a ${trialDurationDays}-day free trial with full access to FORVA PropTech. No credit card is required to start. You can explore all features, connect lead sources, and see the workflow in action before committing.`,
+  },
+  {
+    q: 'Which lead sources does FORVA support?',
+    a: 'FORVA captures leads from Facebook Lead Ads, Instagram inquiries, website forms, and manual entry. All channels funnel into one unified lead inbox so nothing falls through the cracks.',
+  },
+  {
+    q: 'How does AI qualification work?',
+    a: 'FORVA automatically scores each lead on buyer intent, budget, preferred location, property type, purchase timeline, and financing status. You get an AI summary and qualification score the moment a lead arrives.',
+  },
+  {
+    q: 'Can I use FORVA with my team?',
+    a: 'Yes. The Team plan supports up to 5 users and the Agency plan supports up to 15. Agency owners can assign leads, track agent performance, and manage the whole team from one dashboard.',
+  },
+  {
+    q: 'What payment methods do you accept?',
+    a: 'Subscriptions are securely processed through PayPal. You can switch plans or cancel anytime from your billing settings.',
+  },
+  {
+    q: 'Is there a long-term contract?',
+    a: 'No. All plans are month-to-month. You can upgrade, downgrade, or cancel at any time.',
+  },
+  {
+    q: 'Does FORVA work on mobile?',
+    a: 'Yes. FORVA PropTech is a fully responsive web application and installable PWA. You can use it on desktop, tablet, and mobile with full functionality across all devices.',
+  },
 ];
 
 function WorkflowRow({ reverse = false }: { reverse?: boolean }) {
@@ -156,8 +197,21 @@ function WorkflowRow({ reverse = false }: { reverse?: boolean }) {
   );
 }
 
+function FaqItem({ faq, isOpen, onToggle }: { faq: { q: string; a: string }; isOpen: boolean; onToggle: () => void }) {
+  return (
+    <div className="fp-faq-item">
+      <button type="button" onClick={onToggle} className="fp-faq-question" aria-expanded={isOpen}>
+        <span>{faq.q}</span>
+        {isOpen ? <Minus size={18} /> : <Plus size={18} />}
+      </button>
+      {isOpen && <p className="fp-faq-answer">{faq.a}</p>}
+    </div>
+  );
+}
+
 export function HomePage() {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -178,6 +232,7 @@ export function HomePage() {
         description="FORVA PropTech helps real estate professionals capture leads, qualify buyers with AI, follow up faster, book appointments and manage every opportunity in one workflow."
       />
 
+      {/* Hero */}
       <section className="fp-hero">
         <div className="fp-shell fp-hero-grid">
           <div className="fp-hero-copy">
@@ -190,7 +245,7 @@ export function HomePage() {
               <Link to="/get-started" className="fp-button fp-button-primary">Start for free <ArrowRight size={17} /></Link>
               <a href="#how-forva-works" className="fp-text-link">See how it works <ArrowRight size={16} /></a>
             </div>
-            <div className="fp-hero-note">7-day free trial · Built for real estate professionals</div>
+            <div className="fp-hero-note">{trialDurationDays}-day free trial · Built for real estate professionals</div>
           </div>
 
           <div className="fp-video-card">
@@ -199,6 +254,30 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* Customer Journey */}
+      <section className="fp-journey-section">
+        <div className="fp-shell">
+          <div className="fp-section-intro">
+            <span className="fp-kicker">The FORVA Journey</span>
+            <h2>From property inquiry to conversion</h2>
+            <p>Every lead follows a clear path forward — from the first inquiry through qualification, follow-up, and appointment to a closed deal.</p>
+          </div>
+          <div className="fp-journey-track">
+            {journeySteps.map((step, i) => {
+              const Icon = step.icon;
+              return (
+                <div className="fp-journey-step" key={step.label}>
+                  <div className="fp-journey-icon"><Icon size={22} /></div>
+                  <span>{step.label}</span>
+                  {i < journeySteps.length - 1 && <div className="fp-journey-arrow"><ArrowRight size={14} /></div>}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
       <section id="features" className="fp-feature-area">
         <div className="fp-shell">
           <div className="fp-section-intro">
@@ -231,6 +310,7 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* How FORVA Works */}
       <section id="how-forva-works" className="fp-how-section">
         <div className="fp-shell fp-how-heading">
           <span className="fp-kicker">How FORVA Works</span>
@@ -244,6 +324,29 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* Integrations */}
+      <section className="fp-integrations-section">
+        <div className="fp-shell">
+          <div className="fp-section-intro">
+            <span className="fp-kicker">Connect your tools</span>
+            <h2>One workflow for every lead source</h2>
+            <p>FORVA connects to the channels real estate teams already use, so every inquiry enters one consistent workflow.</p>
+          </div>
+          <div className="fp-integrations-grid">
+            {integrations.map((int) => {
+              const Icon = int.icon;
+              return (
+                <div className="fp-integration-card" key={int.name}>
+                  <div className="fp-integration-icon"><Icon size={24} /></div>
+                  <span>{int.name}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
       <section className="fp-testimonial-section">
         <div className="fp-shell">
           <div className="fp-testimonial-heading">
@@ -287,6 +390,62 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* Pricing Preview */}
+      <section className="fp-pricing-preview">
+        <div className="fp-shell">
+          <div className="fp-section-intro">
+            <span className="fp-kicker">Pricing</span>
+            <h2>Plans that scale with your business</h2>
+            <p>{trialDurationDays}-day free trial. No credit card required to start.</p>
+          </div>
+          <div className="fp-pricing-grid">
+            {plans.map((plan) => (
+              <div className={`fp-pricing-card ${plan.highlighted ? 'fp-pricing-featured' : ''}`} key={plan.id}>
+                {plan.highlighted && <span className="fp-pricing-badge">Most Popular</span>}
+                <h3>{plan.name}</h3>
+                <div className="fp-pricing-price">
+                  <span className="fp-pricing-amount">${plan.monthlyPrice}</span>
+                  <span className="fp-pricing-period">/month</span>
+                </div>
+                <p className="fp-pricing-desc">{plan.description}</p>
+                <ul className="fp-pricing-features">
+                  {plan.features.slice(0, 5).map((f) => (
+                    <li key={f}><CheckCircle2 size={16} /> {f}</li>
+                  ))}
+                </ul>
+                <Link to="/get-started" className={`fp-button ${plan.highlighted ? 'fp-button-primary' : 'fp-button-secondary'}`}>
+                  {plan.cta} <ArrowRight size={15} />
+                </Link>
+              </div>
+            ))}
+          </div>
+          <div className="fp-pricing-footer">
+            <Link to="/pricing" className="fp-learn-link">Compare all plans <ArrowRight size={16} /></Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="fp-faq-section">
+        <div className="fp-shell">
+          <div className="fp-section-intro">
+            <span className="fp-kicker">FAQ</span>
+            <h2>Frequently asked questions</h2>
+          </div>
+          <div className="fp-faq-list">
+            {faqs.map((faq, i) => (
+              <FaqItem
+                key={i}
+                faq={faq}
+                isOpen={openFaq === i}
+                onToggle={() => setOpenFaq(openFaq === i ? null : i)}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
       <section className="fp-final-cta">
         <div className="fp-shell fp-final-cta-card">
           <div>
@@ -294,7 +453,7 @@ export function HomePage() {
             <h2>Give every real estate lead a faster path forward.</h2>
           </div>
           <div className="fp-final-actions">
-            <Link to="/get-started" className="fp-button fp-button-primary">Start 7-day free trial <ArrowRight size={17} /></Link>
+            <Link to="/get-started" className="fp-button fp-button-primary">Start {trialDurationDays}-day free trial <ArrowRight size={17} /></Link>
             <Link to="/contact" className="fp-button fp-button-secondary">Talk to sales</Link>
           </div>
         </div>
