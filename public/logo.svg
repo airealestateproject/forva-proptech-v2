@@ -1,0 +1,14 @@
+<svg width="160" height="40" viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2AA6FF"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <path d="M20 4 L36 34 H4 Z" stroke="url(#lg)" stroke-width="2.4" stroke-linejoin="round" fill="none"/>
+    <path d="M20 12 L29 29 H11 Z" fill="url(#lg)"/>
+  </g>
+  <text x="48" y="20" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">FORVA</text>
+  <text x="48" y="33" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" fill="#a7b3c4" letter-spacing="2.2">PROPTECH</text>
+</svg>
